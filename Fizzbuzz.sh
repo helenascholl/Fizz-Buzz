@@ -1,13 +1,19 @@
 #!/bin/bash
-for i in $(seq 30)
+if test $# -ne 1
+then echo No parameters.
+elif test $# -eq 1;then
+for i in $(seq $1)
 do
-if test $(($i%3)) -eq 0
-then if test $(($i%5)) -eq 0;then echo Fizzbuzz;fi
-elif test $(($i%5)) -eq 0
-then echo Buzz
-elif test $(($i%3)) -eq 0
+fizz=$(($i%3))
+buzz=$(($i%5))
+if test $fizz -eq 0 && test $buzz -eq 0
+then echo Fizz Buzz
+elif test $fizz -eq 0
 then echo Fizz
+elif test $buzz -eq 0
+then echo Buzz
 else
 echo $i
 fi
 done
+fi
